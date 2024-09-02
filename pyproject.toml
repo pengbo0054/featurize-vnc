@@ -1,0 +1,21 @@
+[project]
+name = "vnc"
+description = "VNC客户端网页版"
+authors = [{name= "Dave", email = "pengbo@featurize.ai"}]
+version = "1.0.0"
+readme = "README.md"
+
+[project.urls]
+Homepage = "https://github.com/pengbo0054/featurize-vnc"
+Documentation = "https://github.com/pengbo0054/featurize-vnc/blob/main/README.md"
+Repository = "https://github.com/pengbo0054/featurize-vnc"
+Changelog = "https://github.com/pengbo0054/featurize-vnc/blob/main/CHANGELOG.md"
+Issues = "https://github.com/pengbo0054/featurize-vnc/issues"
+
+[featurize]
+port = "23307"
+op_port = "37297"
+icon = "https://featurize-public.oss-cn-beijing.aliyuncs.com/vnc.png"
+author_github = "https://github.com/pengbo0054"
+name = "VNC"
+newtab = false
