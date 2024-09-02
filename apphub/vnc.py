@@ -130,7 +130,7 @@ VNC客户端网页版
         # TODO: 写应用启动的逻辑
         
         # 重新启动 VNC 服务器会话
-        self.execute_command("vncserver :1")
+        self.execute_command("vncserver -geometry 1440x720 :1")
 
         # 启动 noVNC 服务
         self.execute_command(f"websockify --web=/usr/share/novnc --cert=novnc.pem --key=novnc.pem {self.port} localhost:5901", self.cfg.source_directory, daemon=True)
