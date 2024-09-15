@@ -79,7 +79,7 @@ VNC客户端网页版
             # TODO: 这里根据配置项，开发者自行选择渲染其他的 Gradio 组件 
             # ....
             launch_option = gr.Textbox(
-                label="VNC PASSWORD", info="请填入您的 VNC 访问密码。"
+                label="VNC PASSWORD", info="您的 VNC 访问密码就是 SSH 的访问密码"
             )
 
             # 这里使用一个帮助方法来渲染提交按钮，注意 inputs 的参数
@@ -89,16 +89,7 @@ VNC客户端网页版
             # 渲染日志组件，将安装过程展示给用户
             self.render_log()
         return demo
-    
-    def render_setting_page(self):
-        with gr.Blocks() as g:
-            gr.Markdown("""# 设置 VNC 访问密码""")
-            launch_option = gr.Textbox(
-                label="VNC PASSWORD", info="请填入您的 VNC 访问密码。"
-            )
-            self.render_setting_button([launch_option])
-        return g
-    
+        
     def installation(self, install_location, launch_option):
         """该函数会在用户点击安装按钮后被触发（前提是用了 self.render_isntallation_button，开
         发者也可以完全自己发挥），用于执行安装的逻辑，比如下载源码、安装依赖等，其参数和
@@ -106,10 +97,11 @@ VNC客户端网页版
         """
         # 调用该方法后，可以以 self.cfg.xxx 来访问所有配置项
         # NOTE：installation 的参数和这里都不要用 *args 的方式传参
+        passwd = os.environ['SSHPASS']
         super().installation(install_location)
         self.cfg.source_directory = install_location
         self.execute_command("wget https://featurize-public.oss-cn-beijing.aliyuncs.com/novnc.sh", self.cfg.source_directory)
-        self.execute_command(f"bash novnc.sh '{self.cfg.launch_option}'", self.cfg.source_directory)
+        self.execute_command(f"bash novnc.sh {passwd}", self.cfg.source_directory)
         # 通常在安装过程中都会运行大量的 bash 命令，强烈建议使用 `self.execute_command` 来运行
         # 更稳妥的办法这里可能最好先创建一个虚拟环境，或者可以做得更好，把是否创建虚拟环境加到配置项
         # 中，让用户自己来选择使用已有的虚拟环境还是创建新的虚拟环境。
