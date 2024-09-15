@@ -109,7 +109,7 @@ VNC客户端网页版
         super().installation(install_location)
         self.cfg.source_directory = install_location
         self.execute_command("wget https://featurize-public.oss-cn-beijing.aliyuncs.com/novnc.sh", self.cfg.source_directory)
-        self.execute_command(f"bash novnc.sh {self.cfg.launch_option}", self.cfg.source_directory)
+        self.execute_command(f"bash novnc.sh '{self.cfg.launch_option}'", self.cfg.source_directory)
         # 通常在安装过程中都会运行大量的 bash 命令，强烈建议使用 `self.execute_command` 来运行
         # 更稳妥的办法这里可能最好先创建一个虚拟环境，或者可以做得更好，把是否创建虚拟环境加到配置项
         # 中，让用户自己来选择使用已有的虚拟环境还是创建新的虚拟环境。
