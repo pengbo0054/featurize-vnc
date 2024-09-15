@@ -78,10 +78,10 @@ VNC客户端网页版
 
             # TODO: 这里根据配置项，开发者自行选择渲染其他的 Gradio 组件 
             # ....
-            launch_option = gr.Textbox(
-                label="VNC PASSWORD", info="您的 VNC 访问密码就是 SSH 的访问密码"
-            )
-
+            launch_option = gr.Markdown(
+                """
+                # 您的 VNC 密码就是实例的 SSH 密码。
+                """)
             # 这里使用一个帮助方法来渲染提交按钮，注意 inputs 的参数
             self.render_installation_button(
                 inputs=[install_location, launch_option]
